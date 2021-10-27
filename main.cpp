@@ -10,7 +10,13 @@
     public:
         string customer_name;
         int customer_contact;
-    public:
+        
+        customerInfo()
+        {
+            customer_name = "NULL";
+            customer_contact = 0;
+        }
+
         void setDetails()
         {
             cout << "Name: ";
@@ -110,7 +116,7 @@
             cout << "KM Driven: " << kmdriven << endl;
             cout << "Rental Fee: " << rentalfee << endl;
 
-            cout << "\n Enter number of Days: ";
+            cout << "\nEnter number of Days: ";
             cin >> days;
 
             finalrentalfee = rentalfee * days;
@@ -124,15 +130,15 @@
         {
             cout << "\n\t\t                       Car Rental - Customer Invoice                  " << endl;
             cout << "\t\t	///////////////////////////////////////////////////////////" << endl;
-            cout << "\t\t	| Customer Name:" << "-----------------|" << setw(10) << customer_name << " |" << endl;
-            cout << "\t\t	| Phone Number:" << "------------------|" << setw(10) << customer_contact << " |" << endl;
-            cout << "\t\t	| Car Brand :" << "--------------------|" << setw(10) << brand << " |" << endl;
-            cout << "\t\t	| Car Model :" << "--------------------|" << setw(10) << model << " |" << endl;
-            cout << "\t\t	| Year :" << "-------------------------|" << setw(10) << year << " |" << endl;
-            cout << "\t\t	| Number Plate :" << "-----------------|" << setw(10) << numplate << " |" << endl;
-            cout << "\t\t	| KM Driven :" << "--------------------|" << setw(10) << kmdriven << " |" << endl;
-            cout << "\t\t	| Number of days :" << "---------------|" << setw(10) << days << " |" << endl;
-            cout << "\t\t	| Your Rental Amount is :" << "--------|" << setw(10) << finalrentalfee << " |" << endl;
+            cout << "\t\t	| Customer Name:" << "-----------------|" << setw(15) << customer_name << " |" << endl;
+            cout << "\t\t	| Phone Number:" << "------------------|" << setw(15) << customer_contact << " |" << endl;
+            cout << "\t\t	| Car Brand :" << "--------------------|" << setw(15) << brand << " |" << endl;
+            cout << "\t\t	| Car Model :" << "--------------------|" << setw(15) << model << " |" << endl;
+            cout << "\t\t	| Year :" << "-------------------------|" << setw(15) << year << " |" << endl;
+            cout << "\t\t	| Number Plate :" << "-----------------|" << setw(15) << numplate << " |" << endl;
+            cout << "\t\t	| KM Driven :" << "--------------------|" << setw(15) << kmdriven << " |" << endl;
+            cout << "\t\t	| Number of days :" << "---------------|" << setw(15) << days << " |" << endl;
+            cout << "\t\t	| Your Rental Amount is :" << "--------|" << setw(15) << finalrentalfee << " |" << endl;
             cout << "\t\t	 ________________________________________________________" << endl;
             cout << "\n";
             cout << "\t\t	 ________________________________________________________" << endl;
@@ -169,86 +175,17 @@
     {
         welcome myObj;
 
-        customerInfo customer1;
-        customer1.setDetails();
-
-        cout << endl;
-
         rent obj1;
+
+        obj1.setDetails();
+
+        system("CLS");
+        
         obj1.display();
+
+        system("CLS");
+
         obj1.showrent();
-
-        //system("CLS");
-
-        /*
-        // Create an object of Car 1
-        car carObj1;
-        carObj1.brand = "BMW";
-        carObj1.model = "X5";
-        carObj1.year = 2016;
-        carObj1.numplate = "MP-2022";
-        carObj1.kmdriven = 234;
-
-        // Create an object of Car 2
-        car carObj2;
-        carObj2.brand = "AUDI";
-        carObj2.model = "Q7";
-        carObj2.year = 2011;
-        carObj2.numplate = "MP-3405";
-        carObj2.kmdriven = 201;
-
-        // Create an object of Car 3
-        car carObj3;
-        carObj3.brand = "Suzuki";
-        carObj3.model = "Swift VXI";
-        carObj3.year = 2005;
-        carObj3.numplate = "MP-1999";
-        carObj3.kmdriven = 678;
-
-        // Create an object of Car 4
-        car carObj4;
-        carObj4.brand = "Honda";
-        carObj4.model = "City";
-        carObj4.year = 2018;
-        carObj4.numplate = "MP-0007";
-        carObj4.kmdriven = 458;
-
-
-        // Create an object of Car 5
-        car carObj5;
-        carObj5.brand = "Suzuki";
-        carObj5.model = "SX-4";
-        carObj5.year = 2004;
-        carObj5.numplate = "MP-3673";
-        carObj5.kmdriven = 578;
-
-
-        // Create an object of Car 6
-        car carObj6;
-        carObj6.brand = "Ford";
-        carObj6.model = "Endeavour";
-        carObj6.year = 2019;
-        carObj6.numplate = "MP-5619";
-        carObj6.kmdriven = 234;
-
-        // Create an object of Car 7
-        car carObj7;
-        carObj7.brand = "Hyundai";
-        carObj7.model = "Creta";
-        carObj7.year = 2017;
-        carObj7.numplate = "MP-1111";
-        carObj7.kmdriven = 312;
-
-        // Print attribute values
-        cout << setw(7) << "S.No." << setw(15) << "Brand" << setw(15) << "Model" << setw(15) << "Year" << setw(15) << "Number Plate" << setw(15) << "Km Driven" << endl;
-        cout << setw(7) << "1.)" << setw(15) << carObj1.brand << setw(15) << carObj1.model << setw(15) << carObj1.year << setw(15) << carObj1.numplate << setw(15) << carObj1.kmdriven << endl;
-        cout << setw(7) << "2.)" << setw(15) << carObj2.brand << setw(15) << carObj2.model << setw(15) << carObj2.year << setw(15) << carObj2.numplate << setw(15) << carObj2.kmdriven << endl;
-        cout << setw(7) << "3.)" << setw(15) << carObj3.brand << setw(15) << carObj3.model << setw(15) << carObj3.year << setw(15) << carObj3.numplate << setw(15) << carObj3.kmdriven << endl;
-        cout << setw(7) << "4.)" << setw(15) << carObj4.brand << setw(15) << carObj4.model << setw(15) << carObj4.year << setw(15) << carObj4.numplate << setw(15) << carObj4.kmdriven << endl;
-        cout << setw(7) << "5.)" << setw(15) << carObj5.brand << setw(15) << carObj5.model << setw(15) << carObj5.year << setw(15) << carObj5.numplate << setw(15) << carObj5.kmdriven << endl;
-        cout << setw(7) << "6.)" << setw(15) << carObj6.brand << setw(15) << carObj6.model << setw(15) << carObj6.year << setw(15) << carObj6.numplate << setw(15) << carObj6.kmdriven << endl;
-        cout << setw(7) << "7.)" << setw(15) << carObj7.brand << setw(15) << carObj7.model << setw(15) << carObj7.year << setw(15) << carObj7.numplate << setw(15) << carObj7.kmdriven << endl;
-        */
         
         return 0;
     }
