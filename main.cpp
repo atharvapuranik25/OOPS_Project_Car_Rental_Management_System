@@ -128,27 +128,27 @@
     public:
         void showrent()
         {
-            cout << "\n\t\t                       Car Rental - Customer Invoice                  " << endl;
-            cout << "\t\t	///////////////////////////////////////////////////////////" << endl;
-            cout << "\t\t	| Customer Name:" << "-----------------|" << setw(15) << customer_name << " |" << endl;
-            cout << "\t\t	| Phone Number:" << "------------------|" << setw(15) << customer_contact << " |" << endl;
-            cout << "\t\t	| Car Brand :" << "--------------------|" << setw(15) << brand << " |" << endl;
-            cout << "\t\t	| Car Model :" << "--------------------|" << setw(15) << model << " |" << endl;
-            cout << "\t\t	| Year :" << "-------------------------|" << setw(15) << year << " |" << endl;
-            cout << "\t\t	| Number Plate :" << "-----------------|" << setw(15) << numplate << " |" << endl;
-            cout << "\t\t	| KM Driven :" << "--------------------|" << setw(15) << kmdriven << " |" << endl;
-            cout << "\t\t	| Number of days :" << "---------------|" << setw(15) << days << " |" << endl;
-            cout << "\t\t	| Your Rental Amount is :" << "--------|" << setw(15) << finalrentalfee << " |" << endl;
-            cout << "\t\t	 ________________________________________________________" << endl;
-            cout << "\n";
-            cout << "\t\t	 ________________________________________________________" << endl;
-            cout << "\t\t	 # This is a computer generated invoce and it does not" << endl;
-            cout << "\t\t	 require an authorised signture #" << endl;
-            cout << " " << endl;
-            cout << "\t\t	///////////////////////////////////////////////////////////" << endl;
-            cout << "\t\t	You are advised to pay up the amount before due date." << endl;
-            cout << "\t\t	Otherwise penelty fee will be applied" << endl;
-            cout << "\t\t	///////////////////////////////////////////////////////////" << endl;
+            cout << "\n                 Car Rental - Customer Invoice                  " << endl;
+            cout << "///////////////////////////////////////////////////////////" << endl;
+            cout << "| Customer Name:" << "-----------------|" << setw(15) << customer_name << " |" << endl;
+            cout << "| Phone Number:" << "------------------|" << setw(15) << customer_contact << " |" << endl;
+            cout << "| Car Brand :" << "--------------------|" << setw(15) << brand << " |" << endl;
+            cout << "| Car Model :" << "--------------------|" << setw(15) << model << " |" << endl;
+            cout << "| Year :" << "-------------------------|" << setw(15) << year << " |" << endl;
+            cout << "| Number Plate :" << "-----------------|" << setw(15) << numplate << " |" << endl;
+            cout << "| KM Driven :" << "--------------------|" << setw(15) << kmdriven << " |" << endl;
+            cout << "| Number of days :" << "---------------|" << setw(15) << days << " |" << endl;
+            cout << "| Your Rental Amount is :" << "--------|" << setw(15) << finalrentalfee << " |" << endl;
+            cout << " ________________________________________________________" << endl;
+            cout << endl;
+            cout << " ________________________________________________________" << endl;
+            cout << " # This is a computer generated invoce and it does not" << endl;
+            cout << " require an authorised signture #" << endl;
+            cout << endl;
+            cout << "///////////////////////////////////////////////////////////" << endl;
+            cout << "You are advised to pay up the amount before due date." << endl;
+            cout << "Otherwise penelty fee will be applied" << endl;
+            cout << "///////////////////////////////////////////////////////////" << endl;
         }
     };
 
