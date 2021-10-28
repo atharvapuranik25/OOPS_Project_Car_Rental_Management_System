@@ -1,7 +1,6 @@
     #include <iostream>
     #include <string>
     #include <stdlib.h>
-    #include <iomanip>
 
     using namespace std;
 
@@ -19,15 +18,15 @@
         
         void setDetails()
         {
-            cout << "Name: ";
+            cout << "\t\t\tName: ";
             cin >> customer_name;
-            cout << "Phone Number: ";
+            cout << "\t\t\tPhone Number: ";
             cin >> customer_contact;
         }
         void getDetails()
         {
-            cout << "\nName: " << customer_name;
-            cout << "\nPhone Number: " << customer_contact<<endl;
+            cout << "\n\t\t\tName: " << customer_name;
+            cout << "\n\t\t\tPhone Number: " << customer_contact<<endl;
         }
 
     };
@@ -129,52 +128,59 @@
     public:
         void showrent()
         {
-            cout << "\n                 Car Rental - Customer Invoice                  " << endl;
-            cout << "///////////////////////////////////////////////////////////" << endl;
-            cout << "| Customer Name:" << "-----------------|" << setw(15) << customer_name << " |" << endl;
-            cout << "| Phone Number:" << "------------------|" << setw(15) << customer_contact << " |" << endl;
-            cout << "| Car Brand :" << "--------------------|" << setw(15) << brand << " |" << endl;
-            cout << "| Car Model :" << "--------------------|" << setw(15) << model << " |" << endl;
-            cout << "| Year :" << "-------------------------|" << setw(15) << year << " |" << endl;
-            cout << "| Number Plate :" << "-----------------|" << setw(15) << numplate << " |" << endl;
-            cout << "| KM Driven :" << "--------------------|" << setw(15) << kmdriven << " |" << endl;
-            cout << "| Number of days :" << "---------------|" << setw(15) << days << " |" << endl;
-            cout << "| Your Rental Amount is :" << "--------|" << setw(15) << finalrentalfee << " |" << endl;
-            cout << " ________________________________________________________" << endl;
+            cout << "\n\t\t\t                 Car Rental - Customer Invoice                  " << endl;
+            cout << "\t\t\t///////////////////////////////////////////////////////////" << endl;
+            cout << "\t\t\t| Customer Name:" << "-----------------|" << setw(15) << customer_name << " |" << endl;
+            cout << "\t\t\t| Phone Number:" << "------------------|" << setw(15) << customer_contact << " |" << endl;
+            cout << "\t\t\t| Car Brand :" << "--------------------|" << setw(15) << brand << " |" << endl;
+            cout << "\t\t\t| Car Model :" << "--------------------|" << setw(15) << model << " |" << endl;
+            cout << "\t\t\t| Year :" << "-------------------------|" << setw(15) << year << " |" << endl;
+            cout << "\t\t\t| Number Plate :" << "-----------------|" << setw(15) << numplate << " |" << endl;
+            cout << "\t\t\t| KM Driven :" << "--------------------|" << setw(15) << kmdriven << " |" << endl;
+            cout << "\t\t\t| Number of days :" << "---------------|" << setw(15) << days << " |" << endl;
+            cout << "\t\t\t| Your Rental Amount is :" << "--------|" << setw(15) << finalrentalfee << " |" << endl;
+            cout << "\t\t\t ________________________________________________________" << endl;
             cout << endl;
-            cout << " ________________________________________________________" << endl;
-            cout << " # This is a computer generated invoce and it does not" << endl;
-            cout << " require an authorised signture #" << endl;
+            cout << "\t\t\t| Your Total Rental Amount :" << "-----|" << setw(15) << finalrentalfee << " |" << endl;
+            cout << "\t\t\t ________________________________________________________" << endl;
+            cout << "\t\t\t # This is a computer generated invoce and it does not" << endl;
+            cout << "\t\t\t require an authorised signture #" << endl;
             cout << endl;
-            cout << "///////////////////////////////////////////////////////////" << endl;
-            cout << "You are advised to pay up the amount before due date." << endl;
-            cout << "Otherwise penelty fee will be applied" << endl;
-            cout << "///////////////////////////////////////////////////////////" << endl;
+            cout << "\t\t\t///////////////////////////////////////////////////////////" << endl;
+            cout << "\t\t\tYou are advised to pay up the amount before due date." << endl;
+            cout << "\t\t\tOtherwise penelty fee will be applied" << endl;
+            cout << "\t\t\t///////////////////////////////////////////////////////////" << endl;
         }
     };
 
-    class welcome
+    class password
     {
     public:
-        int password;
+        int ps;
 
-        welcome()
+        password()
         {
-            cout << "Welcome to\nCar Rental Service";
-            cout << "\n\nEnter Password: ";
-            cin >> password;
-            if (password == 12345) {
-                cout << "Access Granted \n\n";
+            cout << "\n\n\t\t\tEnter Password: ";
+            cin >> ps;
+            if (ps == 12345) {
+                cout << "\n\t\t\tAccess Granted \n\n";
             }
             else {
-                cout << "Try Again \n\n";
+                cout << "\n\t\t\tTry Again \n\n";
             }
         }
     };
 
     int main()
     {
-        welcome myObj;
+        cout << "\t\t\t##########################################################################"<<endl;
+        cout << "\t\t\t##                                                                      ##" << endl;
+        cout << "\t\t\t##                            WELCOME TO                                ##" << endl;
+        cout << "\t\t\t##                        CAR RENTAL SERVICE                            ##" << endl;
+        cout << "\t\t\t##                                                                      ##" << endl;
+        cout << "\t\t\t##########################################################################"<<endl;
+
+        password myObj;
 
         rent obj1;
 
