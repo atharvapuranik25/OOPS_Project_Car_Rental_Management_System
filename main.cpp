@@ -8,15 +8,15 @@
     class customerInfo
     {
     public:
-        string customer_name;
+        char customer_name[20];
         char customer_contact[10];
         
         customerInfo()
         {
-            customer_name = " ";
+            strcpy_s(customer_name, "no name");
             customer_contact[10] = 0;
         }
-
+        
         void setDetails()
         {
             cout << "Name: ";
@@ -29,6 +29,7 @@
             cout << "\nName: " << customer_name;
             cout << "\nPhone Number: " << customer_contact<<endl;
         }
+
     };
 
     class car
