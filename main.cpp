@@ -5,16 +5,16 @@
 
     using namespace std;
 
-    class customerInfo //add more info
+    class customerInfo
     {
     public:
         string customer_name;
-        int customer_contact;
+        char customer_contact[10];
         
         customerInfo()
         {
-            customer_name = "NULL";
-            customer_contact = 0;
+            customer_name = " ";
+            customer_contact[10] = 0;
         }
 
         void setDetails()
@@ -152,14 +152,14 @@
         }
     };
 
-    class welcome //welcome class
+    class welcome
     {
     public:
         int password;
 
         welcome()
         {
-            cout << "Welcome to\nCar Rental Service";   //make this interesting
+            cout << "Welcome to\nCar Rental Service";
             cout << "\n\nEnter Password: ";
             cin >> password;
             if (password == 12345) {
