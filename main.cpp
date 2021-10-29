@@ -283,20 +283,6 @@
         {
             cout << "Invalid Input";
         }
-        
 
-        /*
-        rent obj1;
-
-        obj1.setDetails();
-
-        system("CLS");
-        
-        obj1.display();
-
-        system("CLS");
-
-        obj1.showrent();
-        */
         return 0;
     }
