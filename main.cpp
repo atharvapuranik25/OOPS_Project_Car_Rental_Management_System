@@ -44,7 +44,6 @@
         int kmdriven;
         int rentalfee;
         int days;
-        int carnum;
         int finalrentalfee;
 
         car()
@@ -56,7 +55,6 @@
             kmdriven = 0;
             rentalfee = 0;
             days = 0;
-            carnum = 0;
             finalrentalfee = 0;
         }
 
@@ -123,15 +121,15 @@
             {
                 int flag = 0;
                 fin.read((char*)this, sizeof(*this));
-                while (!(fin.eof()) && flag==1)
+                while (!(fin.eof()) && flag==0)
                 {
                     if (!strcmp(t, this->brand))
                     {
                         showCarInfo();
                         fin.read((char*)this, sizeof(*this));
                     }
-                    int pos = fin.tellg();
-                    fin.seekg(pos);
+                    int pos = (-1)*(int (sizeof car));
+                    fin.seekg(pos, ios::cur);
                     fin.read((char*)this, sizeof(*this));
                     flag++;
                 }
