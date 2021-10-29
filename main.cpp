@@ -1,7 +1,9 @@
     #include <iostream>
-    #include <string>
+    #include <cstring>
     #include <stdlib.h>
     #include <iomanip>
+    #include <fstream>
+    #include <stdio.h>
 
     using namespace std;
 
@@ -35,10 +37,10 @@
     class car
     {
     public:
-        string brand;
-        string model;
+        char brand[20];
+        char model[10];
         int year;
-        string numplate;
+        char numplate[6];
         int kmdriven;
         int rentalfee;
         int days;
@@ -47,10 +49,10 @@
 
         car()
         {
-            brand = "NULL";
-            model = "NULL";
+            strcpy_s(brand, "no brand");
+            strcpy_s(model, "null");
             year = 0;
-            numplate = "NULL";
+            strcpy_s(numplate, "null");
             kmdriven = 0;
             rentalfee = 0;
             days = 0;
@@ -58,69 +60,113 @@
             finalrentalfee = 0;
         }
 
-        void display()
+        void getCarInfo()
         {
-            cout << setw(7) << "S.No." << setw(15) << "Brand" << setw(15) << "Model" << setw(15) << "Year" << setw(15) << "Number Plate" << setw(15) << "Km Driven" << setw(15) << "Rental Fee" << endl;
-            cout << setw(7) << "1.)" << setw(15) << "BMW" << setw(15) << "X5" << setw(15) << "2016" << setw(15) << "MP-2022" << setw(15) << "234" << setw(15) << "1100" << endl;
-            cout << setw(7) << "2.)" << setw(15) << "Audi" << setw(15) << "Q7" << setw(15) << "2011" << setw(15) << "MP-3405" << setw(15) << "201" << setw(15) << "1000" << endl;
-            cout << setw(7) << "3.)" << setw(15) << "Suzuki" << setw(15) << "Swift VXI" << setw(15) << "2005" << setw(15) << "MP-1999" << setw(15) << "678" << setw(15) << "600" << endl;
-            cout << setw(7) << "4.)" << setw(15) << "Honda" << setw(15) << "City" << setw(15) << "2018" << setw(15) << "MP-0007" << setw(15) << "458" << setw(15) << "800" << endl;
-        
-            cout << "\n\nChoose a Car from the above option: ";
-            cin >> carnum;
+            cout << "Enter Brand: ";
+            cin >> brand;
+            cout << "Enter Model: ";
+            cin >> model;
+            cout << "Enter Year: ";
+            cin >> year;
+            cout << "Enter Number Plate: ";
+            cin >> numplate;
+            cout << "Enter KM Driven: ";
+            cin >> kmdriven;
+            cout << "Enter Rental Fee: ";
+            cin >> rentalfee;
+        }
 
-            if (carnum == 1)
+        void showCarInfo()
+        {
+            cout << "\n" << brand << " " << model << " " << year << " " << numplate << " " << kmdriven << " " << rentalfee;
+        }
+
+        void storeCar()
+        {
+            ofstream fout;
+            fout.open("carlist.txt",ios::app|ios::binary);
+            fout.write((char*)this,sizeof(*this));
+            fout.close();
+        }
+
+        void viewAllCars()
+        {
+            ifstream fin;
+            fin.open("carlist.txt", ios::in | ios::binary);
+            if (!fin)
             {
-                brand = "BMW";
-                model = "X5";
-                year = 2016;
-                numplate = "MP-2022";
-                kmdriven = 234;
-                rentalfee = 1100;
-            }
-            else if (carnum == 2)
-            {
-                brand = "Audi";
-                model = "Q7";
-                year = 2011;
-                numplate = "MP-3405";
-                kmdriven = 201;
-                rentalfee = 1000;
-            }
-            else if (carnum == 3)
-            {
-                brand = "Suzuki";
-                model = "Swift VXI";
-                year = 2005;
-                numplate = "MP-1999";
-                kmdriven = 678;
-                rentalfee = 600;
-            }
-            else if (carnum == 4)
-            {
-                brand = "Honda";
-                model = "City";
-                year = 2018;
-                numplate = "MP-0007";
-                kmdriven = 458;
-                rentalfee = 800;
+                cout << "File Not Found";
+                exit(0);
             }
             else
             {
-                cout << "Invalid Input";
+                fin.read((char*)this,sizeof(*this));
+                while (!fin.eof())
+                {
+                    showCarInfo(); 
+                    fin.read((char*)this, sizeof(*this));
+                }
+                fin.close();
             }
+        }
 
-            cout << "Brand: " << brand << endl;
-            cout << "Model: " << model << endl;
-            cout << "Year: " << year << endl;
-            cout << "Number PLate: " << numplate << endl;
-            cout << "KM Driven: " << kmdriven << endl;
-            cout << "Rental Fee: " << rentalfee << endl;
+        void searchCar(char* t)
+        {
+            ifstream fin;
+            fin.open("carlist.txt", ios::in | ios::binary);
+            if (!fin)
+            {
+                cout << "\nFile not found";
+                exit(0);
+            }
+            else
+            {
+                int flag = 0;
+                fin.read((char*)this, sizeof(*this));
+                while (!(fin.eof()) && flag==1)
+                {
+                    if (!strcmp(t, this->brand))
+                    {
+                        showCarInfo();
+                        fin.read((char*)this, sizeof(*this));
+                    }
+                    int pos = fin.tellg();
+                    fin.seekg(pos);
+                    fin.read((char*)this, sizeof(*this));
+                    flag++;
+                }
+                
+                fin.close();
+            }
+        }
 
-            cout << "\nEnter number of Days: ";
-            cin >> days;
-
-            finalrentalfee = rentalfee * days;
+        void deleteCar(char* t)
+        {
+            ifstream fin;
+            ofstream fout;
+            fin.open("carlist.txt", ios::in | ios::binary);
+            if (!fin)
+            {
+                cout << "\nFile not found";
+                exit(0);
+            }
+            else
+            {
+                fout.open("tempfile.txt", ios::out | ios::binary);
+                fin.read((char*)this, sizeof(*this));
+                while (!fin.eof())
+                {
+                    if (strcmp(brand, t))
+                    {
+                        fout.write((char*)this, sizeof(*this));
+                    }
+                    fin.read((char*)this, sizeof(*this));
+                }
+                fin.close();
+                fout.close();
+                remove("carlist.txt");
+                rename("tempfile.txt", "carlist.txt");
+            }
         }
     };
 
@@ -129,6 +175,8 @@
     public:
         void showrent()
         {
+            finalrentalfee = rentalfee * days;
+
             cout << "\n\t\t\t                 Car Rental - Customer Invoice                  " << endl;
             cout << "\t\t\t///////////////////////////////////////////////////////////" << endl;
             cout << "\t\t\t| Customer Name:" << "-----------------|" << setw(15) << customer_name << " |" << endl;
@@ -167,7 +215,8 @@
                 cout << "\n\t\t\tAccess Granted \n\n";
             }
             else {
-                cout << "\n\t\t\tTry Again \n\n";
+                cout << "\n\t\t\tIncorrect Password\n\n";
+                exit(0);
             }
         }
     };
@@ -182,7 +231,63 @@
         cout << "\t\t\t##########################################################################"<<endl;
 
         password myObj;
+        int choice;
 
+        cout << "\n\t\t\tChoose One-" << endl;
+        cout << "\t\t\t1. Rent a Car" << endl;
+        cout << "\t\t\t2. Give Car" << endl;
+        cout << "\t\t\tEnter 1 or 2: ";
+        cin >> choice;
+
+        if (choice == 1)
+        {
+            system("CLS");
+            rent obj1;
+            obj1.setDetails();
+            system("CLS");
+            cout << "List of Available Cars-\n\n";
+            cout << "Brand\tModel\tYear\tNumber Plate\tKM Driven\tRental Fee\n";
+            obj1.viewAllCars();
+            cout << "\n\nEnter the Brand of the Car you would like to Rent: ";
+
+            char brand[20];
+            cin >> brand;
+            obj1.searchCar(brand);
+            cout << endl;
+            cout << "Brand: "<< obj1.brand << endl;
+            cout << "Model: " << obj1.model << endl;
+            cout << "Year: " << obj1.year << endl;
+            cout << "Number Plate: " << obj1.numplate << endl;
+            cout << "KM Driven: " << obj1.kmdriven << endl;
+            cout << "Rental Fee: " << obj1.rentalfee << endl;
+
+            cout << "\nEnter number of days you want to rent the car for: ";
+            cin >> obj1.days;
+
+            system("CLS");
+            obj1.showrent();
+            //obj1.deleteCar(brand);
+        }
+
+        else if (choice == 2)
+        {
+            system("CLS");
+            rent obj1;
+            obj1.setDetails();
+            system("CLS");
+            cout << "Enter Details of the Car-\n" << endl;
+            obj1.getCarInfo();
+            obj1.storeCar();
+            cout << "\n\nCar Details Stored Successfully..." << endl;
+        }
+
+        else
+        {
+            cout << "Invalid Input";
+        }
+        
+
+        /*
         rent obj1;
 
         obj1.setDetails();
@@ -194,6 +299,6 @@
         system("CLS");
 
         obj1.showrent();
-        
+        */
         return 0;
     }
